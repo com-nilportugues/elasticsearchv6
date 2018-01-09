@@ -1,0 +1,83 @@
+server.port: 8080
+server.compression.enabled: true
+server.compression.min-response-size: 1
+server.compression.mime-types:
+  - application/json
+  - application/xml
+  - application/xhtml+xml
+  - text/html
+  - text/xml
+  - text/plain
+
+swagger:
+  title: OAuth API
+  description: OAuth implementation with JWT Tokens and Social logins.
+  version: 1.0.0
+  tos: http://www.example.com/tos
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0
+
+jwt:
+  tokenExpirationTime: 15 # Number of minutes
+  refreshTokenExpTime: 43800 # One month in minutes
+  tokenIssuer: http://nilportugues.com
+  tokenSigningKey: xm8EV6Hy5RMFK4EEACIDAwQus
+
+oauth:
+  facebook:
+    # Visit: https://developers.facebook.com/
+    appId: 162508564144960
+    appSecret: 9bc171f5a3a0943501d609e474479fef
+    scope: public_profile,email,user_friends,user_birthday
+
+
+  twitter:
+    # Visit: https://apps.twitter.com/
+    appId: GsdCwF3WfFTud2QEzsdc75AmQ
+    appSecret: sv3PNMDcS5SAIiNHZnXgCJxsTNV8CI3hWDOxGDEpm82VUw7S9K
+
+
+  google:
+    # Visit: - https://console.developers.google.com/iam-admin/projects?pli=1
+    #        - Create a project and ask for OAUTH credentials (Not API KEY!)
+    #        - Set up a LOCALHOST and PRODUCTION URLs in OAUTH callback and host options
+    #        - Scopes: https://developers.google.com/identity/protocols/googlescopes#plusv1
+    appId: 1014771327030-h24o4tacm4thua6nqhd9hbbtuk6d5r8c.apps.googleusercontent.com
+    appSecret: _hpu788l-iscMrsOAUYCQvZA
+    scope: userinfo.profile,userinfo.email,plus.login,plus.me
+
+
+
+spring:
+    profiles: default
+
+    datasource:
+        name: com.zaxxer.hikari.HikariDataSource
+        url: jdbc:mysql://localhost:3307/oauth_api?useUnicode=true&characterEncoding=utf8&useSSL=false
+        username: root
+        password:
+        hikari:
+            data-source-properties:
+                cachePrepStmts: true
+                prepStmtCacheSize: 250
+                prepStmtCacheSqlLimit: 2048
+                useServerPrepStmts: true
+    data:
+        elasticsearch:
+            cluster-name:
+            cluster-nodes: localhost:9300
+
+    jpa:
+        database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+        database: MYSQL
+        show-sql: false
+        properties:
+            hibernate.cache.use_second_level_cache: false
+            hibernate.cache.use_query_cache: false
+            hibernate.generate_statistics: false
+        hibernate:
+            ddl-auto: none
+            naming:
+                strategy: org.springframework.boot.orm.jpa.hibernate.SpringNamingStrategy
+
