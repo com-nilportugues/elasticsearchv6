@@ -22,8 +22,8 @@ Now add the package as a dependency:
 ```xml
 <dependencies>		
   <dependency>
-	  <groupId>com.nilportugues</groupId>
-	  <artifactId>elasticsearchv6</artifactId>
+    <groupId>com.nilportugues</groupId>
+    <artifactId>elasticsearchv6</artifactId>
     <version>${nilportugues_elasticsearchv6.version}</version>
   </dependency>
 </dependencies>  
