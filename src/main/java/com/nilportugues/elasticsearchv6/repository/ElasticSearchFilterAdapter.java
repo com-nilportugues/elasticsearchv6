@@ -1,7 +1,7 @@
 package com.nilportugues.elasticsearchv6.repository;
 
-import com.nilportugues.oauth.shared.domain.FacetOptions;
-import com.nilportugues.oauth.shared.domain.FilterOptions;
+import com.nilportugues.shared.domain.FacetOptions;
+import com.nilportugues.shared.domain.FilterOptions;
 import org.elasticsearch.index.query.*;
 
 import java.util.ArrayList;

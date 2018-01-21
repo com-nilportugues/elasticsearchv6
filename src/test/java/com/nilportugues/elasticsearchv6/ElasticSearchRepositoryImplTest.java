@@ -1,7 +1,7 @@
 package com.nilportugues.elasticsearchv6;
 
 import com.nilportugues.elasticsearchv6.repository.ElasticSearchRepositoryImpl;
-import com.nilportugues.oauth.shared.domain.*;
+import com.nilportugues.shared.domain.*;
 import org.apache.http.entity.StringEntity;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeAll;
@@ -15,63 +15,63 @@ public class ElasticSearchRepositoryImplTest {
 
     private ElasticSearchRepositoryImpl<TestUser> repository;
 
-    @BeforeEach
-    private void createRepository() {
-        repository = new ElasticSearchRepositoryImpl<>(ElasticConfig.CLIENT, TestUser.class, "test_index", "user");
-    }
-
     @BeforeAll
     private static void createData() throws Exception {
 
-        //CREATES AN INDEX
+        // CREATES AN INDEX
         try {
             HashMap<String, String> queryParams = new HashMap<>();
 
-            //INDEX
+            // INDEX
             HashMap<String, Object> settings = new HashMap<>();
             settings.put("number_of_shards", "1");
             settings.put("number_of_replicas", "0");
 
-            //Create the index with the mapping.
+            // Create the index with the mapping.
             HashMap<String, Object> jsonData = new HashMap<>();
             jsonData.put("settings", settings);
 
             String json = ElasticConfig.MAPPER.writeValueAsString(jsonData);
 
             ElasticConfig.CLIENT
-                    .getLowLevelClient()
-                    .performRequest("PUT", "/test_index", queryParams, new StringEntity(json), ElasticConfig.JSON_HEADER);
+                .getLowLevelClient()
+                .performRequest("PUT", "/test_index", queryParams, new StringEntity(json), ElasticConfig.JSON_HEADER);
 
         } catch (Exception ignored) {
 
         }
 
-        //CREATES A MAPPING
+        // CREATES A MAPPING
         try {
             HashMap<String, String> queryParams = new HashMap<>();
 
-            //MAPPING
-            //Have a list of mappings for each type to do a translation
+            // MAPPING
+            // Have a list of mappings for each type to do a translation
             HashMap<String, String> stringType = new HashMap<>();
             stringType.put("type", "text");
 
-            //Based on the object's properties, build the propertyList
+            // Based on the object's properties, build the propertyList
             HashMap<String, Object> userPropertyList = new HashMap<>();
             userPropertyList.put("id", stringType);
             userPropertyList.put("username", stringType);
 
-            //Envelope for the propertyList
+            // Envelope for the propertyList
             HashMap<String, Object> mappings = new HashMap<>();
             mappings.put("properties", userPropertyList);
 
             String json = ElasticConfig.MAPPER.writeValueAsString(mappings);
 
             ElasticConfig.CLIENT
-                    .getLowLevelClient()
-                    .performRequest("PUT", "/test_index/_mapping/user", queryParams, new StringEntity(json), ElasticConfig.JSON_HEADER);
+                .getLowLevelClient()
+                .performRequest("PUT", "/test_index/_mapping/user", queryParams, new StringEntity(json), ElasticConfig.JSON_HEADER);
         } catch (Exception ignored) {
 
         }
+    }
+
+    @BeforeEach
+    private void createRepository() {
+        repository = new ElasticSearchRepositoryImpl<>(ElasticConfig.CLIENT, TestUser.class, "test_index", "user");
     }
 
     @Test

@@ -3,7 +3,7 @@ package com.nilportugues.elasticsearchv6.repository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nilportugues.elasticsearch.annotations.IdAnnotationProcessor;
 import com.nilportugues.elasticsearch.repository.ElasticSearchRepository;
-import com.nilportugues.oauth.shared.domain.*;
+import com.nilportugues.shared.domain.*;
 import org.apache.http.message.BasicHeader;
 import org.elasticsearch.action.delete.DeleteRequest;
 import org.elasticsearch.action.get.GetRequest;
@@ -119,8 +119,8 @@ public class ElasticSearchRepositoryImpl<T extends Serializable> implements Elas
 
     @Override
     public Paginated<T> findAll(final FilterOptions filterOptions,
-                                final PageOptions pageOptions,
-                                final SortOptions sortOptions) {
+        final PageOptions pageOptions,
+        final SortOptions sortOptions) {
 
         try {
             final SearchRequest request = new SearchRequest(indexName);
@@ -254,7 +254,6 @@ public class ElasticSearchRepositoryImpl<T extends Serializable> implements Elas
             final FiltersAggregationBuilder filterAggregation = AggregationBuilders.filters(facetName, keyedFilter);
             requestBuilder.aggregation(filterAggregation);
         });
-
 
         facetOptions.getFacetsFromFilteredValues().forEach((facetName, value) -> {
 
