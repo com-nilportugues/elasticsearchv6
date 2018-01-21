@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.nilportugues.elasticsearchv6</groupId>
     <artifactId>elasticsearchv6</artifactId>
-    <version>1.0.0.RELEASE</version>
+    <version>0.0.1.RELEASE</version>
     <packaging>jar</packaging>
     <name>nilportugues/elasticsearchv6</name>
     <description>ElasticSearch 6 Repository implementation</description>
