@@ -8,7 +8,7 @@ install:
 
 script:
  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
- - mvn test
+ - mvn test || mvn test
 
 branches:
   only:
