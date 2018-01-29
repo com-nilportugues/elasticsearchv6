@@ -2,6 +2,10 @@ language: java
 
 jdk:
  - oraclejdk8
+ 
+addons:
+  hosts:
+   - elasticsearch
 
 install:
  - mvn -N io.takari:maven:wrapper
