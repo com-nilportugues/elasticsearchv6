@@ -19,7 +19,7 @@
         <jjwt.version>0.6.0</jjwt.version>
         <javax.inject.version>1</javax.inject.version>
 
-        <jackson-databind.version>2.9.10.5</jackson-databind.version>
+        <jackson-databind.version>2.9.10.7</jackson-databind.version>
         <jackson-core.version>2.9.0</jackson-core.version>
         <jackson-annotations.version>2.9.0</jackson-annotations.version>
         <junit.jupiter.version>5.0.2</junit.jupiter.version>
